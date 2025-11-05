@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
       id: Date.now().toString(),
       slug: body.name.toLowerCase().replace(/\s+/g, '-'),
       lastUpdated: new Date().toISOString(),
+      image: body.image || '/images/watch1.jpg',
       ...body
     }
 

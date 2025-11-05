@@ -1,28 +1,17 @@
 'use client'
 
+import { useWishlist } from '@/contexts/WishlistContext'
+import { Product } from '@/types/product'
 import { useState } from 'react'
 
-/**
- * WISHLIST BUTTON - Client Component
- * 
- * This is a Client Component because it needs:
- * 1. Interactive state (added to wishlist or not)
- * 2. Click event handlers
- * 3. Dynamic UI updates
- * 4. Browser-only functionality
- * 
- * Client Components are perfect for interactive elements
- * that need to respond to user actions.
- */
-
 interface WishlistButtonProps {
-  productId: string
-  productName: string
+  product: Product
 }
 
-export default function WishlistButton({ productId, productName }: WishlistButtonProps) {
-  const [isInWishlist, setIsInWishlist] = useState(false)
+export default function WishlistButton({ product }: WishlistButtonProps) {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   const [isLoading, setIsLoading] = useState(false)
+  const inWishlist = isInWishlist(product.id)
 
   const handleWishlistToggle = async () => {
     setIsLoading(true)
@@ -30,22 +19,23 @@ export default function WishlistButton({ productId, productName }: WishlistButto
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500))
     
-    setIsInWishlist(!isInWishlist)
-    setIsLoading(false)
+    if (inWishlist) {
+      removeFromWishlist(product.id)
+    } else {
+      addToWishlist(product)
+    }
     
-    // Show feedback to user
-    const action = isInWishlist ? 'removed from' : 'added to'
-    alert(`${productName} ${action} wishlist!`)
+    setIsLoading(false)
   }
 
   return (
     <button
       onClick={handleWishlistToggle}
       disabled={isLoading}
-      className={`w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
-        isInWishlist
-          ? 'bg-red-100 text-red-700 hover:bg-red-200'
-          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+      className={`w-full py-2 px-4 rounded-lg font-medium transition-all duration-200 ${
+        inWishlist
+          ? 'bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30'
+          : 'bg-gray-700 text-gray-300 border border-gray-600 hover:bg-gray-600'
       } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {isLoading ? (
@@ -57,9 +47,23 @@ export default function WishlistButton({ productId, productName }: WishlistButto
           Processing...
         </span>
       ) : (
-        <>
-          {isInWishlist ? '❤️ Remove from Wishlist' : '🤍 Add to Wishlist'}
-        </>
+        <span className="flex items-center justify-center">
+          {inWishlist ? (
+            <>
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
+              Remove from Wishlist
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              Add to Wishlist
+            </>
+          )}
+        </span>
       )}
     </button>
   )
