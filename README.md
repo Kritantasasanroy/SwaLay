@@ -1,6 +1,6 @@
 # Next.js E-commerce Demo
 
-**Developer:** AI Assistant  
+**Developer:** Kritanta Sasan Roy  
 **Date:** November 5, 2025  
 **Framework:** Next.js 14 with App Router and TypeScript
 
