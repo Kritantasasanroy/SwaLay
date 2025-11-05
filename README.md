@@ -14,7 +14,7 @@ This project demonstrates all major Next.js rendering strategies in a complete e
 - **CSR (Client-Side Rendering)** - Interactive admin panel
 - **Server Components** - Recommendations with hybrid rendering
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install dependencies
@@ -32,7 +32,7 @@ npm start
 
 Visit `http://localhost:3000` to see the application.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── app/                          # Next.js App Router
@@ -49,7 +49,7 @@ Visit `http://localhost:3000` to see the application.
 └── README.md                    # This file
 ```
 
-## 🎯 Rendering Strategies Explained
+## Rendering Strategies Explained
 
 ### 1. Home Page (/) - Static Site Generation (SSG)
 
@@ -156,14 +156,14 @@ interface Product {
 }
 ```
 
-## 🎨 Styling
+## Styling
 
 - **TailwindCSS** for utility-first styling
 - Responsive design for mobile and desktop
 - Clean, professional UI components
 - Consistent color scheme and typography
 
-## 🚀 Deployment
+## Deployment
 
 This app is ready for deployment on Vercel:
 
@@ -172,7 +172,7 @@ This app is ready for deployment on Vercel:
 3. Deploy automatically with zero configuration
 4. Environment variables will be configured in Vercel dashboard
 
-## 📈 Performance Features
+## Performance Features
 
 - **Static Generation** for fast loading
 - **Incremental Regeneration** for fresh data
@@ -180,7 +180,7 @@ This app is ready for deployment on Vercel:
 - **Client-side caching** for API responses
 - **Optimized images** and assets
 
-## 🧪 Testing
+## Testing
 
 To add tests (optional enhancement):
 
@@ -192,14 +192,14 @@ npm install --save-dev jest @testing-library/react @testing-library/jest-dom
 npm test
 ```
 
-## 🔄 Data Flow
+## Data Flow
 
 1. **Build Time**: SSG pages generated with static data
 2. **Request Time**: SSR pages fetch fresh data
 3. **Client Side**: CSR pages handle interactivity
 4. **Hybrid**: Server Components combine server and client rendering
 
-## 📝 Environment Variables
+## Environment Variables
 
 Copy `.env.example` to `.env.local` and configure:
 
@@ -209,7 +209,7 @@ MONGODB_URI=mongodb://localhost:27017/ecommerce (optional)
 NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
-## 🎯 Key Learning Points
+## Key Learning Points
 
 1. **Choose the right rendering strategy** based on data requirements
 2. **SSG** for static content that doesn't change often
@@ -218,7 +218,7 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 5. **CSR** for rich interactivity and complex state
 6. **Server Components** for hybrid server-client architecture
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - Real MongoDB integration
 - User authentication and sessions
